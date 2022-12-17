@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-# my_twitter_project
-=======
-=======
->>>>>>> 4fe1bdf619ced3ee1d4d54c46350bc16513dc35a
+
 # my_twitter_project
 
 ## Build Setup
@@ -72,7 +67,4 @@ More information about the usage of this directory in [the documentation](https:
 This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
 
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
-<<<<<<< HEAD
->>>>>>> 221217
-=======
->>>>>>> 4fe1bdf619ced3ee1d4d54c46350bc16513dc35a
+
