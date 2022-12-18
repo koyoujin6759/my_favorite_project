@@ -1,3 +1,5 @@
+@import "../mixin";
+
 header {
     position:relative;
     height:auto;
@@ -7,6 +9,10 @@ header {
     background:#fff;
     width:$inner-max-width;
     margin:0 auto;
+
+    @include mobile {
+        width:100%;
+    }
 
     .header__inner {
         position:relative;
