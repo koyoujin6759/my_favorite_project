@@ -1,0 +1,24 @@
+
+// color
+$color-base: #000;  
+$title-color-base: #333;    
+$color-point: #5b7af6;    
+
+// font
+$font-family-base: 'Pretendard', 'Noto Sans KR', sans-serif;
+$font-family-noto: 'Noto Sans KR', sans-serif;
+$font-family-roboto: 'Roboto', 'Pretendard', 'Noto Sans KR', sans-serif;
+$font-family-pre: 'Pretendard', 'Noto Sans KR', sans-serif;
+$font-family-gmarket: 'GmarketSans', 'Noto Sans KR', sans-serif;
+
+// size
+$font-size-base: 16px !default;
+
+// layout
+$inner-max-width: 630px; // 1260px(inner넓이) + 40px(좌우 패딩 20px)
+$inner-padding: 0 20px;
+
+// Breakpoints
+$breakpoint-mobile: 630px;
+$breakpoint-tablet: 758px;
+$breakpoint-desktop: 1024px;

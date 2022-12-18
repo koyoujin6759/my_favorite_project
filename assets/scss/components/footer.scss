@@ -1,0 +1,19 @@
+footer {
+    position:relative;
+    height:auto;
+    text-align:center;
+    z-index:99;
+    padding:20px 0;
+    background:#fff;
+    width:$inner-max-width;
+    margin:0 auto;
+
+    .footer__inner {
+        position:relative;
+
+        p {
+            font-size:12px; 
+            color:#ccc; 
+        }
+    }    
+}

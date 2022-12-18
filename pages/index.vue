@@ -1,14 +1,20 @@
 <template>
-  <Tutorial />
+  <div>
+    <Main></Main>
+  </div>
+  
 </template>
 
 <script>
+import Main from '/pages/main/index'
 export default {
   name: 'IndexPage',
-  data() {
-    return {
-      
-    }
+  components: {
+    Main
   },
+  // async mounted() {
+  //   console.log('this.$fire: ', this.$fire);
+  //   await this.$fire.firestore.setDoc
+  // }
 }
 </script>
