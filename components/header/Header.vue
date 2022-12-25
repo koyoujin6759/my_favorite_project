@@ -3,6 +3,7 @@
     <header>
         <div class="header__inner">
             header
+            <i class="fa-solid fa-check checkBtn"></i>
         </div>        
     </header> 
   </div>
