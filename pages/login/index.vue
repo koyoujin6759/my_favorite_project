@@ -4,19 +4,19 @@
         <div class="login-form-wrap">
             <form>
                 <div class="login-input-wrap mgbt10">
-                    <input v-model="userEmail" type="email" required="required" name="userEmail" placeholder="이메일을 입력해주세요" ></input>
+                    <input v-model="userEmail" type="email" required="required" name="userEmail" placeholder="이메일을 입력해주세요" />
                 </div>
                 <div class="login-error-msg">
                     <p>{{emailErrMsg}}</p>
                 </div>
                 <div class="login-input-wrap mgbt10">
-                    <input v-model="userPassword" type="password" required="required" name="userPassword" placeholder="패스워드를 입력해주세요" ></input>
+                    <input v-model="userPassword" type="password" required="required" name="userPassword" placeholder="패스워드를 입력해주세요" />
                 </div>
                 <div class="login-error-msg">
                     <p>{{pwErrMsg}}</p>
                 </div>
                 <div class="login-submit-wrap">
-                    <button class="btn-login" v-on:click="OnClickLoginButton">로그인</button>
+                    <button class="btn-login" type="button" @click="OnClickLoginButton">로그인</button>
                 </div>
             </form>
         </div>

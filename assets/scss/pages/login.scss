@@ -4,6 +4,11 @@
     padding:30px 60px;
 
     .login-input-wrap {
+        position: relative;
+
+        &.password input {
+            padding-right: 80px;
+        }
 
         input {
             width:100%; 
@@ -16,6 +21,25 @@
             &::placeholder {
                 font-size:13px;
                 color:#ccc;
+            }
+        }
+
+        .option-wrap {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+
+            i {
+                cursor: pointer;
+                
+                &.show {
+                    color: hotpink;
+                }
+                &.hide {
+                    color: #ddd;
+                }
             }
         }
     }
@@ -41,5 +65,9 @@
         font-size:14px;
         border:none;
         color:#fff;
+
+        &:disabled {
+            background:#ddd;
+        }
     }
 }

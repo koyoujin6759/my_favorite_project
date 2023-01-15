@@ -28,5 +28,18 @@ header {
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         } 
+
+        .user {
+            position: absolute;
+            right:20px;
+            top:50%;
+            transform: translateY(-50%);
+            z-index: 1;
+
+            span {
+                display: inline-block;
+                padding-left: 10px;
+            }
+        }
     }    
 }
