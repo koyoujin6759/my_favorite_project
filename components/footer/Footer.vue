@@ -1,7 +1,7 @@
 <template>
   <div>
     <footer>
-        <div  class="footer__inner">
+        <div  class="footer-inner">
             <p>Copyright © YOUJIN Co. All rights reserved.</p>
         </div>       
     </footer>

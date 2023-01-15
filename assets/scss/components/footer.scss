@@ -1,21 +1,15 @@
-@import "../mixin";
 
 footer {
     position:relative;
     height:auto;
     text-align:center;
-    z-index:99;
-    padding:20px 0;
-    background:#fff;
-    width:$inner-max-width;
-    margin:0 auto;
+    z-index:99;  
+    border-top:5px solid #f0f0f0;
 
-    @include mobile {
-        width:100%;
-    }
-
-    .footer__inner {
+    .footer-inner {
         position:relative;
+        padding:20px 0;
+        background:#fff;
 
         p {
             font-size:12px; 

@@ -1,20 +1,32 @@
-@import "../mixin";
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
 
 header {
     position:relative;
     height:auto;
     text-align:center;
     z-index:99;
-    padding:20px 0;
     background:#fff;
-    width:$inner-max-width;
-    margin:0 auto;
+    border-bottom:5px solid #f0f0f0;
 
-    @include mobile {
-        width:100%;
-    }
-
-    .header__inner {
+    .header-inner {
         position:relative;
+        padding:20px;
+        text-align: center;
+
+        .btn-prev {
+            position: absolute;
+            left: 20px;
+            top:50%;
+            transform:translateY(-50%);
+            font-size:22px;
+        }        
+
+        .logo {
+            font-family: 'Rowdies', cursive;
+            font-size: 22px;
+            background: linear-gradient(to right, pink, hotpink);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        } 
     }    
 }

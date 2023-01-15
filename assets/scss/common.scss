@@ -100,22 +100,22 @@ button {
     text-align:right !important;
 }
 @for $i from 1 to 1000 {
-    .mt#{$i}{
+    .mgtp#{$i}{
       margin-top:$i + px !important;
     }
 }
 @for $i from 1 to 1000 {
-    .mb#{$i}{
+    .mgbt#{$i}{
       margin-bottom:$i + px !important;
     }
 }
 @for $i from 1 to 1000 {
-    .pt#{$i}{
+    .pdtp#{$i}{
       padding-top:$i + px !important;
     }
 }
 @for $i from 1 to 1000 {
-    .pb#{$i}{
+    .pdbt#{$i}{
       padding-bottom:$i + px !important;
     }
 }

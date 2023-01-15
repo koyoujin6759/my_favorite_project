@@ -1,9 +1,9 @@
 <template>
   <div>
     <header>
-        <div class="header__inner">
-            header
-            <i class="fa-solid fa-check checkBtn"></i>
+        <div class="header-inner">
+            <i class="fa-solid fa-arrow-left btn-prev"></i>
+            <h1 class="logo"><router-link to="/">FAVORiTE</router-link></h1>            
         </div>        
     </header> 
   </div>

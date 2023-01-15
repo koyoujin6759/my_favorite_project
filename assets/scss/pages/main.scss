@@ -1,8 +1,47 @@
-@import "../mixin";
 
-.main-page {
-    width:$inner-max-width;
-    margin:5px auto;
-    background:#fff;
-    min-height: 500px;
+.main-page {      
+
+    section {        
+        min-height: 100px;
+        background:#fff;
+        padding-top: 30px;
+        padding-bottom: 20px;
+
+        &.main-sc02 {
+
+            .map-wrap {
+                min-height: 150px;
+                background-color: #eee;
+            }
+
+            .list-wrap {
+
+                ul {
+                    li {
+                        position: relative;
+                        border-bottom: 1px solid #f0f0f0;
+                        padding:10px 80px 10px 20px;
+
+                        p {
+                            font-size: 16px;
+                            color:#333;
+                        }
+
+                        .option-wrap {
+                            position: absolute;
+                            right: 20px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            z-index: 1;
+
+                            a {
+                                display: inline-block;
+                                margin-left:5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

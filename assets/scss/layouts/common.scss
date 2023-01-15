@@ -1,11 +1,13 @@
-@import "../mixin";
 
 .inner {
-    width:$inner-max-width;
+    max-width:$inner-max-width;
+    width:100%;
     margin:0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,.05);    
+}
 
-    @include mobile {
-        width:100%;
-        margin:0;
-    }
+.contents {
+    padding:0 20px;
 }
