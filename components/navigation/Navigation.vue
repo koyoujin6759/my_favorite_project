@@ -24,7 +24,7 @@ export default {
                     name:"스크랩"
                 },
                 {
-                    url:"/login",
+                    url:"/mypage",
                     icon:"fa-solid fa-user",
                     name:"마이페이지"
                 },

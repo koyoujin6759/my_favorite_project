@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="mypage-wrap">
+        <h2 class="mgbt20">마이페이지</h2>
         
     </div>
 </template>
@@ -12,7 +13,9 @@ export default {
             
         };
     },
-
+    computed: {
+        
+    },
     mounted() {
         
     },

@@ -6,17 +6,17 @@
                 <div class="login-input-wrap mgbt10">
                     <input v-model="userEmail" type="email" required="required" name="userEmail" placeholder="이메일을 입력해주세요" />
                 </div>
-                <div class="login-error-msg">
+                <div v-if="emailErrMsg" class="login-error-msg">
                     <p>{{emailErrMsg}}</p>
                 </div>
                 <div class="login-input-wrap mgbt10">
                     <input v-model="userPassword" type="password" required="required" name="userPassword" placeholder="패스워드를 입력해주세요" />
                 </div>
-                <div class="login-error-msg">
+                <div v-if="pwErrMsg" class="login-error-msg">
                     <p>{{pwErrMsg}}</p>
                 </div>
                 <div class="login-submit-wrap">
-                    <button class="btn-login" type="button" @click="OnClickLoginButton">로그인</button>
+                    <button :disabled="!isValid" class="btn-login" type="button" @click="OnClickLoginButton">로그인</button>
                 </div>
             </form>
         </div>
@@ -25,6 +25,7 @@
 
 <script>
 import value from '@/mixin/value.js';
+import {validEmail} from '@/utils/validation.util'
 export default {
     mixins:[value],
     data() {
@@ -35,11 +36,43 @@ export default {
             pwErrMsg:'',
         };
     },
+    computed: {
+        isValid() {
+            const isValueCheck = this.userEmail && this.userPassword 
+            const validRes = !this.emailErrMsg && !this.pwErrMsg
 
+            return isValueCheck && validRes
+        }
+    },
+    watch:{
+        userEmail(currentValue) {
+            // console.log(currentValue)
+            if(!currentValue) {
+                this.emailErrMsg = '이메일을 입력해주세요.'
+            } else if(!validEmail(currentValue)) {
+                this.emailErrMsg = '올바르지 않은 이메일 형식입니다.'
+            } else {
+                this.emailErrMsg = ''
+            }            
+        },
+        userPassword(currentValue) {
+            if(!currentValue) {
+                this.pwErrMsg = '패스워드를 입력해주세요'
+            } else {
+                this.pwErrMsg = ''
+            }
+        },
+        userPasswordRepeat(currentValue) {
+            if(currentValue !== this.userPassword) {
+                this.pwRepeatErrMsg = '패스워드가 일치하지 않습니다.'
+            } else {
+                this.pwRepeatErrMsg = ''
+            }
+        }
+    },
     mounted() {
         
     },
-
     methods: {
          OnClickLoginButton() {
             let checkUserInfo = false;
@@ -66,9 +99,26 @@ export default {
          
             if(checkUserInfo){
                 this.Login();
-            }
-            
+            }            
         },
+        async Login() {           
+            try {
+                const auth = this.$fire.auth
+                const res = await auth.signInWithEmailAndPassword(
+                    this.userEmail,
+                    this.userPassword
+                )
+                console.log(res)
+                const {email,uid} = res.user
+                const userInfo = {email, uid}
+                this.$store.commit('auth/setAuthState',userInfo)
+                console.log('this.$store.state.auth',this.$store.state.auth)
+                this.$router.push('/main');
+            } catch(error) {
+                console.log(error)
+            }           
+           
+        }
     },
 };
 </script>

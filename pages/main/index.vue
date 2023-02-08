@@ -6,7 +6,7 @@
             <Search></Search>
         </section>
         <section class="main-sc02">
-            <div class="map-wrap">
+            <div class="map-wrap" id="map">
                 map area
             </div>
             <div class="list-wrap">
@@ -42,6 +42,11 @@
 <script>
 import Search from '@/components/search/Search.vue'
 export default {
+    data() {
+        return {
+            map: null
+        }
+    },
     components: {
         Search
     },
@@ -71,6 +76,8 @@ export default {
             ...dbcSnpashot.data(),
         }
         console.log("docData:", docData.name);
+
+        window.kakao.maps.load(this.initMap);
     },
     methods: {
         async clickEvt() {
@@ -79,7 +86,16 @@ export default {
                 title: "title1",
                 content: "content1"
             })
-        }
+        },
+        initMap() {
+            const container = document.getElementById("map"); 
+            const options = {
+                center: new window.kakao.maps.LatLng(33.450701, 126.570667), 
+                level: 5,
+            };
+            const map = new window.kakao.maps.Map(container, options);
+            this.map = map;
+        },
     }
 }
 </script>

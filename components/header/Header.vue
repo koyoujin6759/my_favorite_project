@@ -5,10 +5,12 @@
             <i class="fa-solid fa-arrow-left btn-prev"></i>
             <h1 class="logo"><router-link to="/">FAVORiTE</router-link></h1> 
             <div class="user">
-              <span>login</span>
-              <span>{{getUser.email}}</span>
+                <!-- <router-link to="/login" v-if="!auth.email">login</router-link>
+                <router-link to="/login" v-else>logout</router-link> -->
+                <p v-if="!auth.email" @click="login()">login</p>
+                <p v-else @click="logout()">logout</p>
             </div>           
-        </div>        
+        </div>      
     </header> 
   </div>
 </template>
@@ -17,18 +19,34 @@
 export default {
   data() {
     return {
-      userState:false,
+      
     }
   },  
+  asyncData(){},
   computed: {
-    getUser() {
-      return this.$store.getters['auth/getUser'];
+    auth() {
+      return this.$store.state.auth
     }
   },
   mounted() {
     
-  },
-  
+  },  
+  methods: {
+    login() {
+      this.$router.push('/login');
+    },
+    async logout() {
+      try {
+          const auth = this.$fire.auth
+          await auth.signOut(
+            this.$store.commit('auth/logout'),
+            this.$router.push('/main')
+          )          
+      } catch(error) {
+          console.log(error)
+      }          
+    }
+  }
   
 }
 </script>

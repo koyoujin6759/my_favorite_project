@@ -18,6 +18,11 @@ export default {
         Footer,
         Navigation
     },
+    beforeCreate() {
+      // console.log('test')
+      const auth = this.$store.state.auth
+      // if()
+    },
     mounted() {
       this.$fire.auth.onAuthStateChanged((user) => {
         if (user) {

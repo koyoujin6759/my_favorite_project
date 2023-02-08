@@ -16,6 +16,9 @@ export default {
       { rel:"preconnect" , href:"https://fonts.googleapis.com"},
       { ref:"https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap", rel:"stylesheet"}
     ],
+    script:[{
+      src: "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=9d09945916c2e4bc7a456095d903ddbb"
+    }]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -54,7 +57,13 @@ export default {
           measurementId: "G-B9JYE9HR4J"
         },
         services: {
-          auth: true, // Just as example. Can be any other service.
+          // auth: true, 
+          auth: {
+            initialize: {
+              onAuthStateChangedMutation: 'auth/firebaseInitialAuth',
+              subscribeManually: false
+            }
+          },
           firestore: true,
         }
       }
@@ -63,4 +72,5 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  
 }
