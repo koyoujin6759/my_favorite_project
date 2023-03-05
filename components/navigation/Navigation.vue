@@ -19,7 +19,7 @@ export default {
                     name:"홈"
                 },
                 {
-                    url:"/",
+                    url:"/scrap",
                     icon:"fa-solid fa-star",
                     name:"스크랩"
                 },

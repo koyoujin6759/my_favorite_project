@@ -3,7 +3,11 @@
     <div class="main-page ">
         <section class="main-sc01 contents">
         <!-- <button @click="clickEvt">click</button> -->
-            <Search></Search>
+            <!-- <Search></Search> -->
+            <div class="search-box-wrap">
+                <input type="text" placeholder="검색어를 입력하세요. ex) 강남역맛집">
+                <button @click="placeSearch()">검색</button>
+            </div>
         </section>
         <section class="main-sc02">
             <div class="map-wrap" id="map">
@@ -11,25 +15,11 @@
             </div>
             <div class="list-wrap">
                 <ul>
-                    <li>
-                        <p>list1</p>
+                    <li v-for="(item,idx) in list" :key="idx"> 
+                        <p>{{ item.place_name }}</p>
                         <div class="option-wrap">
-                            <a href="">스크랩</a>
-                            <a href="">더보기</a>
-                        </div>
-                    </li>
-                    <li>
-                        <p>list1</p>
-                        <div class="option-wrap">
-                            <a href="">스크랩</a>
-                            <a href="">더보기</a>
-                        </div>
-                    </li>
-                    <li>
-                        <p>list1</p>
-                        <div class="option-wrap">
-                            <a href="">스크랩</a>
-                            <a href="">더보기</a>
+                            <span @click="scrap(item)">스크랩</span>
+                            <a :href="item.place_url" target="_blank">더보기</a>
                         </div>
                     </li>
                 </ul>
@@ -40,15 +30,13 @@
 </template>
 
 <script>
-import Search from '@/components/search/Search.vue'
 export default {
+    
     data() {
         return {
-            map: null
+            map: null,
+            list: '',
         }
-    },
-    components: {
-        Search
     },
     async mounted() {
         const db = this.$fire.firestore;
@@ -78,6 +66,7 @@ export default {
         console.log("docData:", docData.name);
 
         window.kakao.maps.load(this.initMap);
+        
     },
     methods: {
         async clickEvt() {
@@ -95,11 +84,54 @@ export default {
             };
             const map = new window.kakao.maps.Map(container, options);
             this.map = map;
+            this.placeSearch()
         },
+        placeSearch() {
+            const infowindow = new window.kakao.maps.InfoWindow({zIndex:1})
+            const ps = new window.kakao.maps.services.Places();
+            
+            const placesSearchCB = (data, status, pagination) => {
+                if (status === window.kakao.maps.services.Status.OK) {
+                    console.log(data);
+                    this.list = data;
+                    // console.log(this.list)
+                    const bounds = new window.kakao.maps.LatLngBounds();
+                    
+                    for (let i=0; i<data.length; i++) {
+                        displayMarker(data[i], infowindow);
+                        bounds.extend(new window.kakao.maps.LatLng(data[i].y, data[i].x));
+                    }
+
+                    this.map.setBounds(bounds);
+                }
+            }
+
+            const displayMarker = (place, infowindow) => {
+                const marker = new window.kakao.maps.Marker({
+                    map: this.map,
+                    position: new window.kakao.maps.LatLng(place.y, place.x)
+                });
+
+                window.kakao.maps.event.addListener(marker,'click', ()=> {
+                    infowindow.setContent('<div style="padding:5px; font-size:12px;">' +  place.place_name + '</div>');
+                    infowindow.open(this.map,marker);
+                })
+            }
+
+            ps.keywordSearch('강남역 맛집', placesSearchCB);
+        },
+        scrap(placeInfo) {
+            // console.log('this.$store.auth: ', this.$store.state.auth.uid);
+            const newPlaceInfo = {...placeInfo, userId:this.$store.state.auth.uid}
+            this.$store.commit('scrap/addScrap', newPlaceInfo)
+            // this.$store.state.scrap
+            console.log('this.$store.state.scrap: ', this.$store.state.scrap);
+        }
     }
 }
 </script>
 
 <style lang="scss">
     @import "@/assets/scss/pages/main.scss";
+    @import "@/assets/scss/components/search.scss";
 </style>

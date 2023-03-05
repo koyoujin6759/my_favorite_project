@@ -1,6 +1,6 @@
 <template>
     <div class="search-box-wrap">
-        <input type="text" placeholder="검색어를 입력하세요">
+        <input type="text" placeholder="검색어를 입력하세요. ex) 강남역맛집">
         <button>검색</button>
     </div>
 </template>

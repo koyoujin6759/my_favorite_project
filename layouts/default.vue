@@ -21,7 +21,7 @@ export default {
     beforeCreate() {
       // console.log('test')
       const auth = this.$store.state.auth
-      // if()
+      const scrap = this.$store.state.scrap
     },
     mounted() {
       this.$fire.auth.onAuthStateChanged((user) => {

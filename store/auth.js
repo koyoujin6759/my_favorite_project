@@ -31,6 +31,7 @@ export const mutations = {
         state.uid = ''
     },
     firebaseInitialAuth(state, {authUser,claims}) {
+        console.log('state: ', state);
         if(!authUser) {
             state.isInit = true
             return

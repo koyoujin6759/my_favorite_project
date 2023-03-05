@@ -17,7 +17,7 @@ export default {
       { ref:"https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap", rel:"stylesheet"}
     ],
     script:[{
-      src: "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=9d09945916c2e4bc7a456095d903ddbb"
+      src: "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=9d09945916c2e4bc7a456095d903ddbb&libraries=services"
     }]
   },
 
