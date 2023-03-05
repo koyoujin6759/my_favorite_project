@@ -24,7 +24,7 @@ export default {
       const scrap = this.$store.state.scrap
     },
     mounted() {
-      this.$fire.auth.onAuthStateChanged((user) => {
+      this.$fire.auth.onAuthStateChanged(async(user) => {
         if (user) {
           // console.log(user)          
           // const currentUser = this.$fire.auth.currentUser
@@ -33,6 +33,20 @@ export default {
           const userInfo = {email,uid}
           // console.log(userInfo)       
           this.$store.commit('auth/login',userInfo)
+
+          const getList = await this.$fire.firestore
+          .collection('scrap')
+          .where('userId','==',uid)
+          .get()
+
+          const scrapList = []
+          getList.forEach((doc) => scrapList.push({
+            ...doc.data(),
+            docId:doc.id
+          }))
+          console.log("scrapList",scrapList)
+
+          this.$store.commit('scrap/scrapInit',scrapList)
           
           console.log('this.$store.state.auth: ', this.$store.state.auth);
           

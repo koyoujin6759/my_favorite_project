@@ -5,7 +5,7 @@
         <!-- <button @click="clickEvt">click</button> -->
             <!-- <Search></Search> -->
             <div class="search-box-wrap">
-                <input type="text" placeholder="검색어를 입력하세요. ex) 강남역맛집">
+                <input v-model="search" type="text"  placeholder="검색어를 입력하세요. ex) 강남역맛집">
                 <button @click="placeSearch()">검색</button>
             </div>
         </section>
@@ -36,6 +36,7 @@ export default {
         return {
             map: null,
             list: '',
+            search:''
         }
     },
     async mounted() {
@@ -117,12 +118,19 @@ export default {
                     infowindow.open(this.map,marker);
                 })
             }
+            let realSearch = this.search ? this.search : '강남역 맛집'
+            if(!realSearch.includes('맛집')) realSearch += ' 맛집'
+            ps.keywordSearch(realSearch, placesSearchCB);
+            // console.log(this.search)
 
-            ps.keywordSearch('강남역 맛집', placesSearchCB);
         },
-        scrap(placeInfo) {
+        async scrap(placeInfo) {
             // console.log('this.$store.auth: ', this.$store.state.auth.uid);
             const newPlaceInfo = {...placeInfo, userId:this.$store.state.auth.uid}
+            await this.$fire.firestore
+            .collection('scrap')
+            .doc()
+            .set(newPlaceInfo)
             this.$store.commit('scrap/addScrap', newPlaceInfo)
             // this.$store.state.scrap
             console.log('this.$store.state.scrap: ', this.$store.state.scrap);

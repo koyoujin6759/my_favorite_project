@@ -6,15 +6,21 @@ export const getters = {
 }
 
 export const mutations = {
+    scrapInit(state,scrapList) {
+        state.push(...scrapList)
+    },
     addScrap(state,placeInfo) {
         console.log('placeInfo: ', placeInfo);
-        // console.log('state: ', state);
-        // const ref = this.$fire.firestore
-        //     .collection('scrap')
-        //     .doc()
-        //     .set(placeInfo)
-        // console.log(ref)
-        // state.push(placeInfo)
+        state.push(placeInfo);
+    },
+    deleteScrap(state,scrapInfo) {
+        console.log('before state: ', state);
+        // const newState = state.filter(item => item.docId !== scrapInfo.docId) 
+        // state = [...newState]
+        const deleteIndex = state.findIndex(item => item.docId === scrapInfo.docId) 
+        state.splice(deleteIndex, 1)
+        console.log('after state: ', state);
+        
     }
     
 }

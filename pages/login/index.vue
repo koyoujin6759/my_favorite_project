@@ -20,6 +20,10 @@
                 </div>
             </form>
         </div>
+        <div class="mgtp30 join-txt-wrap">
+            <span>아직 회원이 아니신가요?</span>
+            <a href="/join">회원가입</a>
+        </div>
     </div>
 </template>
 
